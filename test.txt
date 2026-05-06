@@ -1,0 +1,33 @@
+Dockerfile
+
+FROM python:3.11-slim
+WORKDIR /app
+COPY hello.py /app
+CMD ["python", "hello.py"]
+
+docker build -t my-python-app .
+docker run my-python-app
+
+FROM eclipse-temurin:17-jdk-alpine
+WORKDIR /app
+COPY Hello.java /app
+RUN javac Hello.java
+CMD ["java","Hello"]
+
+FROM nginx:latest
+COPY index.html /usr/share/nginx/html/index.html
+/usr/local/apache2/htdocs/index.html
+
+docker build -t my-nginx:v1 .
+docker run -d -p 8080:80 --name mynginx-container my-nginx:v1
+
+docker tag myngix:v1 my:nginx:v2
+
+docker run -d -p 8080:80 --name apache-container httpd
+
+docker push username/mynginx:v1
+
+
+
+scp -i key.pem key.pem ubuntu@<publicIP>:/home/ubuntu/
+chmod 400 key.pem
